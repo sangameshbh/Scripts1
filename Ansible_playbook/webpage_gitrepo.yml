@@ -1,0 +1,23 @@
+--- 
+- name: install static webpage on httpd 
+  hosts: all
+  become: true 
+  tasks: 
+  - name: update server 
+    shell: yum update -y 
+  - name: install httpd 
+    yum: 
+      name: httpd 
+      state: latest 
+  - name: install git 
+    yum: 
+      name: git 
+      state: present 
+  - name: deploy webpage on httpd
+    git: 
+      src: https://github.com/sangameshbh/Ansible-javaapp.git
+      dest: /var/www/html/
+  - name: ensure httpd running 
+    service: 
+      name: httpd 
+      state: started 

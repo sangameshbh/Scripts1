@@ -1,0 +1,9 @@
+--- 
+- name: creating folder 
+  hosts: all 
+  become: true 
+  tasks: 
+    - name: create folder 
+      file: 
+        path: /root/dock/ans
+        state: directory 

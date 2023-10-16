@@ -1,0 +1,10 @@
+--- 
+- name: copy a file 
+  hosts: all 
+  become: true 
+  tasks: 
+    - name: copy a file 
+      copy: 
+        src: /root/ans/f1
+        dest: /ubuntu/ 
+        mode: 7777 

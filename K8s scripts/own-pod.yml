@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: my-own-image
+spec: 
+  containers: 
+  - name: my-own-container
+    image: sang9538/s-nginx
+    ports: 
+    - containerPort: 80 

@@ -1,0 +1,25 @@
+---
+- name: install httpd and apache2 on target machine 
+  hosts: all
+  become: true
+  tasks:
+  - name: install httpd
+    yum:
+      name: httpd
+      state: latest
+    when: ansible_os_family == "RedHat"
+  - name: start service 
+    service: 
+      name: httpd
+      state: started 
+    when: ansible_os_family == "RedHat"
+  - name: install apache2
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_os_family == "Debian"
+  - name: start service
+    service:
+      name: apache2
+      state: started
+    when: ansible_os_family == "Debian"  

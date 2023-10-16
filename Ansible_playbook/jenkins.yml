@@ -1,0 +1,23 @@
+---
+- name: install jenkins and start service 
+  hosts: all
+  become: true 
+  tasks: 
+  - name: update packages 
+    shell: sudo yum update -y 
+  - name: install java 
+    yum: 
+      name: java-11 
+      state: present 
+  - name: download jenkins repo 
+    shell: sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+  - name: configure repo 
+    shell: ssudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+  - name: install jenkins 
+    yum: 
+      name: jenkins 
+      update_cache: yes 
+  - name: ensure jenkins is running 
+    service: 
+      name: jenkins 
+      state: started 
